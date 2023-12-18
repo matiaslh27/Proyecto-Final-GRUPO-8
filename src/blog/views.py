@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
 def index_view(request):
-    return render(request, 'left-sidebar.html', {})
+    return render(request, 'index.html', {})
 
