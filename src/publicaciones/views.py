@@ -16,7 +16,13 @@ class PublicacionesView(ListView):
     model = Publicacion
     context_object_name = 'publicaciones'
 
-class Publicar(CreateView):
+class PostView(CreateView):
     template_name='publicaciones/publicar.html'
     model = Publicacion
     form_class = PostForm
+
+class PostEditView(UpdateView):
+    template_name='publicaciones/modificar-publicacion.html'
+    model = Publicacion
+    form_class = PostForm
+    success_url = '../ver-publicaciones'

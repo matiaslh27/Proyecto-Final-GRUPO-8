@@ -6,7 +6,9 @@
 <!--Card de bootstrap para las publicaciones-->    
 
 
-<h2 class="box">Publicaciones</h2>
+
+  <h2 class="box">Publicaciones</h2>
+
 <article class="box">
   <a href="{% url 'crear-publicacion' %}" class="button">Hacer un nuevo post</a>
 </article>
@@ -15,19 +17,29 @@
 
 <article class="box excerpt">
   <div class="card" style="width: 50rem;">
-      <h3><a href="#">{{publicacion.titulo}}</a></h3>
-      
+    <h3><a href="#">{{publicacion.titulo}}</a>
+      <a href="{% url 'modificar-publicacion' publicacion.id %}">
+        <i class="fa-solid fa-pen-to-square" ></i>
+      </a> 
+      <a href="#"> 
+        <i class="fa-solid fa-eraser"> </i>
+      </a>
+    </h3> 
       <img src="..." class="card-img-top" alt="...">
       <div class="card-body">
         <p class="card-text">{{publicacion.texto}}</p>
         <ul class="actions">
           <li><a href="#" class="button">Leer Más</a></li>
-      </ul>
+        </ul>
+      </div>
+      <div>
+     
+        
+     
       </div>
     </div>
     <span class="date" style=" width: 10rem;">{{publicacion.fecha}}</span>
-
-
+   
     
 </article> 
 {% endfor %}
