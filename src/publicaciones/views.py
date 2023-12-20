@@ -26,3 +26,8 @@ class PostEditView(UpdateView):
     model = Publicacion
     form_class = PostForm
     success_url = '../ver-publicaciones'
+
+class EliminarPublicacionView(DeleteView):
+    template_name='publicaciones/eliminar-publicacion.html'
+    model = Publicacion
+    success_url = '../ver-publicaciones'
