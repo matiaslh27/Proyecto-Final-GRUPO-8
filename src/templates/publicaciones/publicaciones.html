@@ -6,6 +6,10 @@
 <!--Card de bootstrap para las publicaciones-->    
 
 
+<h2 class="box">Publicaciones</h2>
+<article class="box">
+  <a href="{% url 'crear-publicacion' %}" class="button">Hacer un nuevo post</a>
+</article>
 
 {% for publicacion in publicaciones %}
 
@@ -17,7 +21,7 @@
       <div class="card-body">
         <p class="card-text">{{publicacion.texto}}</p>
         <ul class="actions">
-          <li><a href="#" class="button icon solid fa-file">Leer Más</a></li>
+          <li><a href="#" class="button">Leer Más</a></li>
       </ul>
       </div>
     </div>

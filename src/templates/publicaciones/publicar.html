@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block contend %}
+    
+    <h2 class = "box">Publicar</h2>
+    <form class= "box" method=post style="width: 100rem;"> {% csrf_token %}
+       {{form}}
+       <button class="button" type="submit"> Publicar</button>
+    </form>
+
+{% endblock contend %}
+    

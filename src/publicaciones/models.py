@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Model para la tabla de publicaciones.
 
@@ -11,4 +12,7 @@ class Publicacion(models.Model):
 
     def __str__(self):
        return self.titulo
+    
+    def get_absolute_url(self):
+       return reverse('posts')
 
