@@ -4,4 +4,8 @@ from .models import Publicacion
 class PostForm(forms.ModelForm):
     class Meta:
         model = Publicacion
-        fields = ['titulo','texto','categoria','creador']
+        fields = ['titulo','texto','categoria']
+
+        labels={
+            'texto':'Contale algo a tus seguidores'
+        }

@@ -16,29 +16,27 @@
 {% for publicacion in publicaciones %}
 
 <article class="box excerpt">
-  <div class="card" style="width: 50rem;">
-    <h3><a href="#">{{publicacion.titulo}}</a>
-      <a href="{% url 'modificar-publicacion' publicacion.id %}">
-        <i class="fa-solid fa-pen-to-square" ></i>
-      </a> 
-      <a href="{% url 'eliminar-publicacion' publicacion.id %}"> 
-        <i class="fa-solid fa-eraser"> </i>
-      </a>
-    </h3> 
+  <div class="card" style="width:50rem;">
+    <h3 style="margin-top: 20px; padding-left: 0.5em;"><a href="#">{{publicacion.titulo}}</a> - <strong>@{{publicacion.creador.username}}</strong></h3> 
       <img src="..." class="card-img-top" alt="...">
       <div class="card-body">
         <p class="card-text">{{publicacion.texto}}</p>
         <ul class="actions">
           <li><a href="#" class="button">Leer Más</a></li>
         </ul>
+        <span>{{publicacion.fecha}}</span>
+        <span style="padding-left: 80%;"><a href="{% url 'modificar-publicacion' publicacion.id %}">
+          <i class="fa-solid fa-pen-to-square" > </i>
+        </a> </span>
+        <a href="{% url 'eliminar-publicacion' publicacion.id %}"> 
+           <i class="fa-solid fa-eraser"> </i>
+        </a>
       </div>
       <div>
-     
-        
-     
+     <!--class="date" style=" width: 10rem;" class para que la fecha aparezca como cartel-->
       </div>
     </div>
-    <span class="date" style=" width: 10rem;">{{publicacion.fecha}}</span>
+    
    
     
 </article> 
