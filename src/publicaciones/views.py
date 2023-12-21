@@ -12,7 +12,7 @@ from django.views.generic import ListView , CreateView , UpdateView , DeleteView
 """
 #View hecha en clase para renderizar las publicaciones desde base de datos
 class PublicacionesView(ListView):
-    template_name = 'publicaciones/publicaciones.html'
+    template_name = 'publicaciones/ver-publicaciones.html'
     model = Publicacion
     context_object_name = 'publicaciones'
 

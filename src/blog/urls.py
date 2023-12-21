@@ -23,5 +23,6 @@ urlpatterns = [
     
 
     #includes
-    path('publicaciones/', include('publicaciones.urls'))
+    path('publicaciones/', include('publicaciones.urls')),
+    path('usuario/', include('users.urls')),
 ]
