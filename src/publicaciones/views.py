@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Publicacion
 from .forms import PostForm
-from django.views.generic import ListView , CreateView , UpdateView , DeleteView
+from django.views.generic import ListView , CreateView , UpdateView , DeleteView, DetailView
 from django.urls import reverse
 # Create your views here.
 """def publicaciones_view(request):
@@ -16,6 +16,7 @@ class PublicacionesView(ListView):
     model = Publicacion
     context_object_name = 'publicaciones'
 
+#View para publicar
 class PostView(CreateView):
     template_name='publicaciones/publicar.html'
     model = Publicacion
@@ -29,13 +30,21 @@ class PostView(CreateView):
     def get_success_url(self):
         return reverse('posts')
 
+#view para editar una post
 class PostEditView(UpdateView):
     template_name='publicaciones/modificar-publicacion.html'
     model = Publicacion
     form_class = PostForm
     success_url = '../ver-publicaciones'
 
+#view para eliminar un post
 class EliminarPublicacionView(DeleteView):
     template_name='publicaciones/eliminar-publicacion.html'
     model = Publicacion
     success_url = '../ver-publicaciones'
+
+#view para ver una publicacion
+class VerPostView(DetailView):
+    model=Publicacion
+    template_name='publicaciones/ver-publicacion.html'
+    context_object_name='publicacion'

@@ -4,10 +4,11 @@
 {% block contend %}
     
     <h2 class = "box">Modificar Publicación</h2>
-    <form class= "box" method=post style="width: 100rem;"> {% csrf_token %}
+    <form class= "box" method=post style="width: 100rem;" enctype="multipart/form-data"> {% csrf_token %}
        {{form}}
        <pre>‎ </pre>
        <button class="button" type="submit"> Guardar Cambios</button>
+       <pre>‎ </pre>
     </form>
 
 {% endblock contend %}

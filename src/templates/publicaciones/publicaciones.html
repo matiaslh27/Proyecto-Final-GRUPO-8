@@ -17,12 +17,18 @@
 
 <article class="box excerpt">
   <div class="card" style="width:50rem;">
-    <h3 style="margin-top: 20px; padding-left: 0.5em;"><a href="#">{{publicacion.titulo}}</a> - <strong>@{{publicacion.creador.username}}</strong></h3> 
-      <img src="..." class="card-img-top" alt="...">
+    <h3 style="margin-top: 20px; padding-left: 0.5em;"><a href="#">{{publicacion.titulo}}</a> - <strong style="text-transform: lowercase; letter-spacing: 0px;"> @{{publicacion.creador.username}}</strong></h3> 
+    
+    {% if publicacion.imagen %}
+    <img src="{{publicacion.imagen.url}}" class="card-img-top" style="width: 200px; height: 200px;">
+    {% else %}
+    <img src="" class="card-img-top" alt="...">
+    {% endif %}
+        
       <div class="card-body">
         <p class="card-text">{{publicacion.texto}}</p>
         <ul class="actions">
-          <li><a href="#" class="button">Leer Más</a></li>
+          <li><a href="{% url 'ver-publicacion' publicacion.id %}" class="button">Leer Más</a></li>
         </ul>
         <span>{{publicacion.fecha}}</span>
         <span style="padding-left: 80%;"><a href="{% url 'modificar-publicacion' publicacion.id %}">

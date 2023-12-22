@@ -16,6 +16,8 @@ class Publicacion(models.Model):
     texto = models.TextField()
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, related_name='publicaciones', null=True)
     creador =  models.ForeignKey(User, related_name='publicaciones', on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='imagen-post', blank=True)
+    link_compra = models.TextField(null=True, blank=True)
 
     def __str__(self):
        return self.titulo

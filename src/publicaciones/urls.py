@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import  PublicacionesView, PostView, PostEditView , EliminarPublicacionView
+from .views import  PublicacionesView, PostView, PostEditView , EliminarPublicacionView, VerPostView
 
 
 
@@ -8,5 +8,6 @@ urlpatterns = [
     path('crear-publicacion/', PostView.as_view(),name='crear-publicacion'),
     path('modify/<int:pk>', PostEditView.as_view(),name='modificar-publicacion'),
     path('eliminar/<int:pk>', EliminarPublicacionView.as_view(),name='eliminar-publicacion'),
+    path('detalle/<int:pk>',VerPostView.as_view(),name='ver-publicacion'),
 ]
     
