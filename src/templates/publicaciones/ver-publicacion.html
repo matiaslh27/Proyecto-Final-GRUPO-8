@@ -60,6 +60,7 @@
 
                     <!-- Post -->
                         <article class="box post">
+                            
                             <header>
                                 <h3 style="font-size: 18px; font-weight: lighter;" >-@{{publicacion.creador.username}}</h3>
                                 <h2>
@@ -74,13 +75,29 @@
                             <h3>Cuerpo de la Publiación</h3>
                             <p>{{publicacion.texto}}</p>
                             <h3 style="font-size: 18px; font-weight: lighter;" >-{{publicacion.fecha}}</h3>
+                            <br>
+                            <form method="post">{% csrf_token %}
+                            
+                                {{form}}
+                                <button type="submit">Comentar</button>  
+                                
+                            </form>
+                            
                         </article>
-
-                </div>
-
-        </div>
+                        
+                        
+                        
+                        
+                          
+                        
+                        
+                </div> 
+        </div>       
     </div>
+    
 </section>
+<br>
+
 
 {% endblock contend %}
     

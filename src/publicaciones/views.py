@@ -1,6 +1,7 @@
+from typing import Any
 from django.shortcuts import render
 from .models import Publicacion
-from .forms import PostForm
+from .forms import PostForm,ComentarioForm
 from django.views.generic import ListView , CreateView , UpdateView , DeleteView, DetailView
 from django.urls import reverse
 # Create your views here.
@@ -48,3 +49,8 @@ class VerPostView(DetailView):
     model=Publicacion
     template_name='publicaciones/ver-publicacion.html'
     context_object_name='publicacion'
+
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['form'] = ComentarioForm()
+        return context
