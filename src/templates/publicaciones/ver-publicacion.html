@@ -77,13 +77,23 @@
                             <h3 style="font-size: 18px; font-weight: lighter;" >-{{publicacion.fecha}}</h3>
                             <br>
                             <form method="post">{% csrf_token %}
-                            
                                 {{form}}
                                 <button type="submit">Comentar</button>  
-                                
                             </form>
-                            
+                            <h2>comentarios</h2>
+                            {% for comentario in publicacion.comentarios.all  %}
+                            <div class="card">
+                                <div class="card-body">
+                                    <strong>
+                                        @{{comentario.creador.username}}
+                                    </strong>-
+                                  {{comentario.texto}}
+                                </div>
+                              </div> 
                         </article>
+                             {% endfor %}
+                                   
+                           
                         
                         
                         

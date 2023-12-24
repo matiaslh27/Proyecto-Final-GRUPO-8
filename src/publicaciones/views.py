@@ -54,3 +54,17 @@ class VerPostView(DetailView):
         context= super().get_context_data(**kwargs)
         context['form'] = ComentarioForm()
         return context
+    
+    def post(self, request, *args, **kwargs):
+
+        publicacion = self.get_object()
+        form = ComentarioForm(request.POST)
+
+        if form.is_valid():
+            comentario= form.save(commit=False)
+            comentario.creador_id=self.request.user.id
+            comentario.publicacion=publicacion
+            comentario.save()
+            return super().get(request)
+        else:
+            return super().get(request)
