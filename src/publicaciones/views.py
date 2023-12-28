@@ -1,6 +1,7 @@
 from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render,redirect
-from .models import Publicacion, Comentario
+from .models import Publicacion, Comentario, Categoria
 from .forms import PostForm,ComentarioForm
 from django.views.generic import ListView , CreateView , UpdateView , DeleteView, DetailView
 from django.urls import reverse
@@ -19,6 +20,34 @@ class PublicacionesView(ListView):
     template_name = 'publicaciones/publicaciones.html'
     model = Publicacion
     context_object_name = 'publicaciones'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categorias'] = Categoria.objects.all()
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        #filtrando x categoria
+        categoria_seleccionada = self.request.GET.get('categoria')
+
+        if categoria_seleccionada:
+            queryset = queryset.filter(categoria = categoria_seleccionada)
+
+        #Orden
+        orden = self.request.GET.get('orderby')
+        if orden:
+            if orden == 'fecha_asc':
+                queryset = queryset.order_by('fecha')
+            elif orden == 'fecha_desc':
+                queryset = queryset.order_by('-fecha')
+            elif orden == 'alf_asc':
+                queryset = queryset.order_by('titulo')
+            elif orden == 'alf_desc':
+                queryset = queryset.order_by('-titulo')
+        return queryset
+
 
 #View para publicar
 class PostView(LoginRequiredMixin,ColaboradorMixin,CreateView):
