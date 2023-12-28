@@ -1,6 +1,6 @@
 from typing import Any
-from django.shortcuts import render
-from .models import Publicacion
+from django.shortcuts import render,redirect
+from .models import Publicacion, Comentario
 from .forms import PostForm,ComentarioForm
 from django.views.generic import ListView , CreateView , UpdateView , DeleteView, DetailView
 from django.urls import reverse
@@ -57,6 +57,9 @@ class VerPostView(DetailView):
     
     def post(self, request, *args, **kwargs):
 
+        if not self.request.user.is_authenticated:
+            return redirect('login')
+        
         publicacion = self.get_object()
         form = ComentarioForm(request.POST)
 
@@ -68,3 +71,10 @@ class VerPostView(DetailView):
             return super().get(request)
         else:
             return super().get(request)
+        
+class EliminarComentarioView(DeleteView):
+    template_name='comentarios/eliminar-comentario.html'
+    model=Comentario
+    
+    def get_success_url(self):
+        return reverse ('ver-publicacion', args=[self.object.publicacion.id])

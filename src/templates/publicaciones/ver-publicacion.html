@@ -88,6 +88,12 @@
                                         @{{comentario.creador.username}}
                                     </strong>-
                                   {{comentario.texto}}
+                                  <span><a href="{% url 'modificar-publicacion' publicacion.id %}">
+                                    <i class="fa-solid fa-pen-to-square" > </i>
+                                  </a> </span>
+                                  <a href="{% url 'eliminar-comentario' comentario.id %}"> 
+                                    <i class="fa-solid fa-trash-can"></i>
+                                  </a>
                                 </div>
                               </div> 
                         </article>
