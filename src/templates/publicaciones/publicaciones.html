@@ -44,7 +44,7 @@
     {% if publicacion.imagen %}
     <img src="{{publicacion.imagen.url}}" class="card-img-top" style="width: 200px; height: 200px;">
     {% else %}
-    <img src="" class="card-img-top" alt="...">
+    <img src="{% static 'images/librito.jpg' %}" class="card-img-top" style="width: 200px; height: 200px;"alt="...">
     {% endif %}
         
       <div class="card-body">
