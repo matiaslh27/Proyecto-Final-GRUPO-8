@@ -4,6 +4,9 @@ from .models import Publicacion, Comentario
 from .forms import PostForm,ComentarioForm
 from django.views.generic import ListView , CreateView , UpdateView , DeleteView, DetailView
 from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .mixins import ColaboradorMixin, CreadorMixin
+
 # Create your views here.
 """def publicaciones_view(request):
 
@@ -18,7 +21,7 @@ class PublicacionesView(ListView):
     context_object_name = 'publicaciones'
 
 #View para publicar
-class PostView(CreateView):
+class PostView(LoginRequiredMixin,ColaboradorMixin,CreateView):
     template_name='publicaciones/publicar.html'
     model = Publicacion
     form_class = PostForm
@@ -32,14 +35,14 @@ class PostView(CreateView):
         return reverse('posts')
 
 #view para editar una post
-class PostEditView(UpdateView):
+class PostEditView(LoginRequiredMixin,CreadorMixin,UpdateView):
     template_name='publicaciones/modificar-publicacion.html'
     model = Publicacion
     form_class = PostForm
     success_url = '../ver-publicaciones'
 
 #view para eliminar un post
-class EliminarPublicacionView(DeleteView):
+class EliminarPublicacionView(LoginRequiredMixin,CreadorMixin,DeleteView):
     template_name='publicaciones/eliminar-publicacion.html'
     model = Publicacion
     success_url = '../ver-publicaciones'
@@ -72,14 +75,14 @@ class VerPostView(DetailView):
         else:
             return super().get(request)
         
-class EliminarComentarioView(DeleteView):
+class EliminarComentarioView(LoginRequiredMixin,CreadorMixin,DeleteView):
     template_name='comentarios/eliminar-comentario.html'
     model=Comentario
     
     def get_success_url(self):
         return reverse ('ver-publicacion', args=[self.object.publicacion.id])
 
-class EditarComentarioView(UpdateView):
+class EditarComentarioView(LoginRequiredMixin, CreadorMixin,UpdateView):
     template_name='comentarios/editar-comentario.html'
     model=Comentario
     form_class=ComentarioForm

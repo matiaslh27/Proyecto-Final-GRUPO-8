@@ -8,11 +8,11 @@
 
 
   <h2 class="box">Publicaciones</h2>
-
-<article class="box">
-  <a href="{% url 'crear-publicacion' %}" class="button">Hacer un nuevo post</a>
-</article>
-
+  
+  <article class="box">
+    <a href="{% url 'crear-publicacion' %}" class="button">Hacer un nuevo post</a>
+  </article>
+  
 {% for publicacion in publicaciones %}
 
 <article class="box excerpt">
