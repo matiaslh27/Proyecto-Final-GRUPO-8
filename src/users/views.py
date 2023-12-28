@@ -2,10 +2,10 @@ from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import User
-from django.views.generic import CreateView
-from .forms import SignUpForm
+from django.views.generic import CreateView, UpdateView
+from .forms import SignUpForm, EditarPerfilForm
 from django.contrib.auth import login
-
+from django.urls import reverse
 
 # Create your views here.
 
@@ -22,5 +22,14 @@ class SignUpView(CreateView):
         login(self.request,user)
         return response
 
-    
+def ver_perfil_view(request):
+    return render(request, 'users/ver-perfil.html',{})
+
+class EditarPerfilView(UpdateView):
+    template_name='users/editar-perfil.html'
+    model=User
+    form_class=EditarPerfilForm
+
+    def get_success_url(self):
+        return reverse('ver-perfil')
  

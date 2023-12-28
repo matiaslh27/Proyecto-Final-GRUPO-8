@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from .models import User
-
+from django import forms
 class SignUpForm(UserCreationForm):
     class Meta:
         model = User
@@ -15,3 +15,10 @@ class SignUpForm(UserCreationForm):
             'password1' : 'Contraseña',
             'password2' : 'Confirmar Contraseña',
         }"""
+
+
+class EditarPerfilForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name','last_name','username','telefono','domicilio','imagen_perfil']
+        

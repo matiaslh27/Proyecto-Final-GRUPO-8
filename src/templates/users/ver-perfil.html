@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contend %}
+<div class="box">  
+<div class="card" style="width: 18rem;">
+    
+    {% if user.imagen_perfil %}
+    <img src="{{user.imagen_perfil.url}}" class="card-img-top" alt="Imagen de Perfil">
+    {% else %}
+    <img src="{% static 'images/default.png' %}" class="card-img-top" alt="Imagen de Perfil">
+    {% endif %}
+        
+    <div class="card-body">
+      <h5 class="card-title">@{{user.username}}</h5>
+      
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Nombre: {{user.first_name}}</li>
+      <li class="list-group-item">Apellido: {{user.last_name}}</li>
+      
+      {% if user.telefono %}
+      <li class="list-group-item">Telefono: {{user.telefono}}</li>
+      {% endif %}
+        
+      
+      {% if user.domicilio %}
+      <li class="list-group-item">Domicilio: {{user.domicilio}}</li>
+      {% endif %}
+        
+      
+    </ul>
+    <div class="card-body">
+      <a href="{% url 'editar-perfil' user.id %}" class="card-link">Editar perfil</a>
+    </div>
+  </div>
+</div> 
+{% endblock contend %}
+    

@@ -63,7 +63,7 @@
 											
 										{{user.username}}</span></a>
 											<ul>
-												<li><a href="#">Ver Perfil</a></li>
+												<li><a href="{% url 'ver-perfil' %}">Ver Perfil</a></li>
 												<li>
 													<form method="post" action="{% url 'logout' %}">
 														{% csrf_token %}
