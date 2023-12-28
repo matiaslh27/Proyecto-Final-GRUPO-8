@@ -5,7 +5,7 @@
     <div class="txt"> 
         <h2>Crear cuenta</h2>    
     </div>
-    <form method="post" class="box" style="width: 60rem; margin-top: -25px;" > {% csrf_token %}
+    <form method="post" enctype="multipart/form-data" class="box" style="width: 60rem; margin-top: -25px;" > {% csrf_token %}
         {{form}}
         <pre>‎ </pre>
        <button class="button" type="submit"> Crear Cuenta</button>

@@ -54,7 +54,14 @@
 									
 									{% if user.is_authenticated %}
 									<li>
-										<a class="icon solid fa-sitemap" href=""><span >{{user.username}}</span></a>
+										
+										{% if user.imagen_perfil %}
+										<img src="{{user.imagen_perfil.url}}" alt="..." style="height: 40px; width: 40px; border-radius: 200px;"><span >
+											{% else %}
+											<img src="{% static 'images/default.png' %}" alt="..." style="height: 40px; width: 40px; border-radius: 200px;"><span ></span>
+										{% endif %}
+											
+										{{user.username}}</span></a>
 											<ul>
 												<li><a href="#">Ver Perfil</a></li>
 												<li>
@@ -67,7 +74,7 @@
 									</li>
 									{% else %}
 									<li>
-										<a class="icon solid fa-sitemap" href="{% url 'login' %}"><span>Iniciar Sesión</span></a>
+										<a href="{% url 'login' %}"><span>Iniciar Sesión</span></a>
 									</li>	
 									{% endif %}
 										
