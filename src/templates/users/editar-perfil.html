@@ -2,7 +2,7 @@
 
 
 {% block contend %}
-<form method="post" class="box" style="width: 60rem; margin-top: -25px;" >{% csrf_token %}
+<form method="post" class="box" enctype="multipart/form-data" style="width: 60rem; margin-top: -25px;" >{% csrf_token %}
 {{form}}
 <pre>‎ </pre>
 <button type="submit">Guardar Cambios</button>
