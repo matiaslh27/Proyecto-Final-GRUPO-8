@@ -80,15 +80,18 @@
                                 {{form}}
                                 <button type="submit">Comentar</button>  
                             </form>
+
                             <h2>comentarios</h2>
-                            {% for comentario in publicacion.comentarios.all  %}
+                            
+                            {% if publicacion.comentarios.all %}
+                                 {% for comentario in publicacion.comentarios.all  %}
                             <div class="card">
                                 <div class="card-body">
                                     <strong>
                                         @{{comentario.creador.username}}
                                     </strong>-
                                   {{comentario.texto}}
-                                  <span><a href="{% url 'modificar-publicacion' publicacion.id %}">
+                                  <span><a href="{% url 'editar-comentario' comentario.id %}">
                                     <i class="fa-solid fa-pen-to-square" > </i>
                                   </a> </span>
                                   <a href="{% url 'eliminar-comentario' comentario.id %}"> 
@@ -97,7 +100,14 @@
                                 </div>
                               </div> 
                         </article>
-                             {% endfor %}
+                             {% endfor %} 
+
+                             {% else %}
+                             <p>Nadie ha comentado aún, se el primero en comentar!</p>
+                            {% endif %}
+                                
+
+                          
                                    
                            
                         

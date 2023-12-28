@@ -78,3 +78,11 @@ class EliminarComentarioView(DeleteView):
     
     def get_success_url(self):
         return reverse ('ver-publicacion', args=[self.object.publicacion.id])
+
+class EditarComentarioView(UpdateView):
+    template_name='comentarios/editar-comentario.html'
+    model=Comentario
+    form_class=ComentarioForm
+
+    def get_success_url(self):
+        return reverse ('ver-publicacion', args=[self.object.publicacion.id])
