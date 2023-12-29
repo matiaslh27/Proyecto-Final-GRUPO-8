@@ -53,12 +53,16 @@
           <li><a href="{% url 'ver-publicacion' publicacion.id %}" class="button">Leer Más</a></li>
         </ul>
         <span>{{publicacion.fecha}}</span>
+        
+        {% if user == publicacion.creador or user.is_superuser %}
         <span style="padding-left: 80%;"><a href="{% url 'modificar-publicacion' publicacion.id %}">
           <i class="fa-solid fa-pen-to-square" > </i>
         </a> </span>
         <a href="{% url 'eliminar-publicacion' publicacion.id %}"> 
            <i class="fa-solid fa-eraser"> </i>
-        </a>
+        {% endif %}
+          
+       
       </div>
       <div>
      <!--class="date" style=" width: 10rem;" class para que la fecha aparezca como cartel-->
