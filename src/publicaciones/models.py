@@ -18,6 +18,7 @@ class Publicacion(models.Model):
     creador =  models.ForeignKey(User, related_name='publicaciones', on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to='imagen-post', blank=True)
     link_compra = models.TextField(null=True, blank=True)
+    me_gusta = models.ManyToManyField(User,related_name='posts', blank=True)
 
     def __str__(self):
        return self.titulo

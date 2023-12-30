@@ -1,6 +1,6 @@
 from typing import Any
 from django.db.models.query import QuerySet
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404,redirect
 from .models import Publicacion, Comentario, Categoria
 from .forms import PostForm,ComentarioForm
 from django.views.generic import ListView , CreateView , UpdateView , DeleteView, DetailView
@@ -118,3 +118,16 @@ class EditarComentarioView(LoginRequiredMixin, CreadorMixin,UpdateView):
 
     def get_success_url(self):
         return reverse ('ver-publicacion', args=[self.object.publicacion.id])
+
+def me_gusta(request):
+    if request.method == 'POST':
+        publicacion_id = request.POST.get('publicacion_id')
+        publicacion = get_object_or_404(Publicacion, id=publicacion_id)
+        user = request.user
+
+        if publicacion.me_gusta.filter(id=user.id).exists():
+            publicacion.me_gusta.remove(user)
+        else:
+            publicacion.me_gusta.add(user)
+        
+    return redirect('posts')

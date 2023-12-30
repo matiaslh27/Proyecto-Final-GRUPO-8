@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import  PublicacionesView, PostView, PostEditView , EliminarPublicacionView, VerPostView, EliminarComentarioView, EditarComentarioView
+from .views import  PublicacionesView, PostView, PostEditView , EliminarPublicacionView, VerPostView, EliminarComentarioView, EditarComentarioView,me_gusta
 
 
 
@@ -11,5 +11,6 @@ urlpatterns = [
     path('detalle/<int:pk>',VerPostView.as_view(),name='ver-publicacion'),
     path('eliminar-comentario/<int:pk>',EliminarComentarioView.as_view(), name='eliminar-comentario'),
     path('editar-comentario/<int:pk>',EditarComentarioView.as_view(), name='editar-comentario'),
+    path('like/',me_gusta,name='me-gusta')
 ]
     
