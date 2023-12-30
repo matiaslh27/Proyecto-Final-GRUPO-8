@@ -6,10 +6,10 @@ from .base import *
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'librito2',
-        'USER': 'root',
+        'NAME': 'matiaslh27$blog_db',
+        'USER': 'matiaslh27',
         'PASSWORD': 'guitargeorge',
-        'HOST': 'localhost',
+        'HOST': 'matiaslh27.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
