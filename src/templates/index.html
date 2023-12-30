@@ -3,56 +3,36 @@
 
 {% block contend %}
     <!-- Features -->
-<section id="features">
+<section id="mas-likes">
     <div class="container">
         <header>
-            <h2>Gentlemen, behold! This is <strong>Strongly Typed</strong>!</h2>
+            <h2>Mirá las publicaciones <strong>más likeadas</strong>!</h2>
         </header>
         <div class="row aln-center">
+            {% for posteo in mejores_posteos  %}
             <div class="col-4 col-6-medium col-12-small">
-
-                <!-- Feature -->
-                    <section>
-                        <a href="#" class="image featured"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
-                        <header>
-                            <h3>Okay, so what is this?</h3>
-                        </header>
-                        <p>This is <strong>Strongly Typed</strong>, a free, fully responsive site template
-                        by <a href="http://html5up.net">HTML5 UP</a>. Free for personal and commercial use under the
-                        <a href="http://html5up.net/license">CCA 3.0 license</a>.</p>
-                    </section>
-
-            </div>
-            <div class="col-4 col-6-medium col-12-small">
-
-                <!-- Feature -->
-                    <section>
-                        <a href="#" class="image featured"><img src="{% static 'images/pic02.jpg' %}" alt="" /></a>
-                        <header>
-                            <h3>Nice! What is HTML5 UP?</h3>
-                        </header>
-                        <p><a href="http://html5up.net">HTML5 UP</a> is a side project of <a href="http://twitter.com/ajlkn">AJ’s</a> (= me).
-                        I started it as a way to both test my responsive tools and sharpen up my coding
-                        and design skills a bit.</p>
-                    </section>
-
-            </div>
-            <div class="col-4 col-6-medium col-12-small">
-
-                <!-- Feature -->
-                    <section>
-                        <a href="#" class="image featured"><img src="{% static 'images/pic03.jpg' %}" alt="" /></a>
-                        <header>
-                            <h3>What's this built with?</h3>
-                        </header>
-                        <p><strong>Responsive Tools</strong> is a simple set of tools for building responsive
-                        sites and apps. All of my templates at <a href="http://html5up.net">HTML5 UP</a> are built using these tools.</p>
-                    </section>
-
-            </div>
+ 
+             <!-- Feature -->
+                 <section>
+                    
+                    {% if posteo.imagen %}
+                    <a href="{% url 'ver-publicacion' posteo.id %}" class="image featured"><img src="{{posteo.imagen.url}}" alt="" /></a>
+                    {% else %}
+                    <a href="{% url 'ver-publicacion' posteo.id %}" class="image featured"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
+                    {% endif %}
+                        
+                     
+                     <header>
+                         <h3>{{posteo.titulo}}</h3>
+                     </header>
+                     <p>{{posteo.texto}}</p>
+                 </section>
+ 
+         </div>
+            {% endfor %}
             <div class="col-12">
                 <ul class="actions">
-                    <li><a href="#" class="button icon solid fa-file">Tell Me More</a></li>
+                    <li><a href="{% url 'posts' %}" class="button">Ver más publicaciones</a></li>
                 </ul>
             </div>
         </div>
@@ -60,11 +40,12 @@
 </section>
 
 <!-- Banner -->
+<section id="foro">
 <section id="banner">
     <div class="container">
-        <p>Use this space for <strong>profound thoughts</strong>.<br />
-        Or an enormous ad. Whatever.</p>
+        <p><strong>¿De qué trata este foro?</strong></p>
     </div>
+</section>
 </section>
 
 <!-- Main -->
@@ -78,149 +59,54 @@
                     <!-- Post -->
                         <article class="box post">
                             <header>
-                                <h2><a href="#">I don’t want to say <strong>it’s the aliens</strong> ...<br />
-                                but it’s the aliens.</a></h2>
+                                <h2><a>Somos un foro creado por amantes de los libros,
+                                para amantes de los libros.</a></h2>
                             </header>
-                            <a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
-                            <h3>I mean isn't it possible?</h3>
-                            <p>Phasellus laoreet massa id justo mattis pharetra. Fusce suscipit
-                            ligula vel quam viverra sit amet mollis tortor congue. Sed quis mauris
-                            sit amet magna accumsan tristique. Curabitur leo nibh, rutrum eu malesuada
-                            in, tristique at erat lorem ipsum dolor sit amet lorem ipsum sed consequat
-                            magna tempus veroeros lorem sed tempus aliquam lorem ipsum veroeros
-                            consequat magna tempus lorem ipsum consequat Phasellus laoreet massa id
-                            justo mattis pharetra. Fusce suscipit ligula vel quam viverra sit amet
-                            mollis tortor congue. Sed quis mauris sit amet magna accumsan tristique.
-                            Curabitur leo nibh, rutrum eu malesuada in tristique.</p>
+                            
+                            <a class="image featured"><img src="{% static 'images/libros-4.jpg' %}" alt="unos cuantos libritos" /></a>
+                            <h3>Un espacio creado para vos</h3>
+                            <p>En este espacio digital, nos sumergimos en la magia de la palabra escrita, explorando los inabarcables mundos que se despliegan entre las páginas de un libro. En el Rincon del Libro, no nos limitamos a compartir solo reseñas de las últimas obras literarias; más bien, invitamos a nuestros lectores a emprender un fascinante viaje de descubrimiento literario que abraza géneros, estilos y épocas.</p>
+                            <p><strong>¿Qué encontrarás en nuestro rincón literario?</strong></p>
+
+                                <p><strong>Viajes a través de las Páginas</strong>: Nuestro equipo de apasionados lectores examina meticulosamente cada libro, ofreciendo exploraciones que van más allá de las reseñas convencionales. Desde éxitos recientes hasta joyas literarias menos conocidas, te guiamos para que encuentres experiencias de lectura que resuenen contigo.</p>
+                                
+                                <p><strong>Sin Límites</strong>: ¿Eres aficionado a la fantasía, apasionado por la ciencia ficción o amante de la poesía? En el Rincón del Libro, abrazamos la diversidad literaria, llevándote a explorar todos los rincones de la creación literaria para que descubras tu propio universo literario.</p>
+                                
+                                <p><strong>Eventos Literarios en Primera Fila</strong>: Mantente al tanto de eventos literarios, lanzamientos de libros y entrevistas exclusivas con autores. En nuestro blog, te ofrecemos un asiento de primera fila para las experiencias más emocionantes del mundo literario.</p>
+                                
+                                <p><strong>Comunidad Literaria</strong>: El Rincón del Libro no es solo nuestro espacio; también es tuyo. Únete a nuestra comunidad de lectores apasionados, comparte tus pensamientos, recomendaciones y descubre conexiones literarias que enriquecerán tu amor por la lectura.</p>
                             <ul class="actions">
-                                <li><a href="#" class="button icon solid fa-file">Continue Reading</a></li>
                             </ul>
                         </article>
 
                     <!-- Post -->
-                        <article class="box post">
+                <section id="quienes-somos">    
+                    <article class="box post">
                             <header>
-                                <h2><a href="#">By the way, many thanks to <strong>regularjane</strong>
-                                for these awesome demo photos</a></h2>
+                                <h2><a href="#">¿Quienes somos?</a></h2>
                             </header>
-                            <a href="#" class="image featured"><img src="images/pic05.jpg" alt="" /></a>
-                            <h3>You should probably check out her work</h3>
-                            <p>Phasellus laoreet massa id justo mattis pharetra. Fusce suscipit
-                            ligula vel quam viverra sit amet mollis tortor congue. Sed quis mauris
-                            sit amet magna accumsan tristique. Curabitur leo nibh, rutrum eu malesuada
-                            in, tristique at erat lorem ipsum dolor sit amet lorem ipsum sed consequat
-                            consequat magna tempus lorem ipsum consequat Phasellus laoreet massa id
-                            in, tristique at erat lorem ipsum dolor sit amet lorem ipsum sed consequat
-                            magna tempus veroeros lorem sed tempus aliquam lorem ipsum veroeros
-                            consequat magna tempus lorem ipsum consequat Phasellus laoreet massa id
-                            justo mattis pharetra. Fusce suscipit ligula vel quam viverra sit amet
-                            mollis tortor congue. Sed quis mauris sit amet magna accumsan tristique.
-                            Curabitur leo nibh, rutrum malesuada.</p>
-                            <p>Erat lorem ipsum veroeros consequat magna tempus lorem ipsum consequat
-                            Phasellus laoreet massa id justo mattis pharetra. Fusce suscipit ligula
-                            vel quam viverra sit amet mollis tortor congue. Sed quis mauris sit amet
-                            magna accumsan tristique. Curabitur leo nibh, rutrum eu malesuada in,
-                            tristique at erat. Curabitur leo nibh, rutrum eu malesuada in, tristique
-                            at erat lorem ipsum dolor sit amet lorem ipsum sed consequat magna
-                            tempus veroeros lorem sed tempus aliquam lorem ipsum veroeros consequat
-                            magna tempus.</p>
+                            <a href="#" class="image featured"><img src="{% static 'images/yo-y-harry.jpg' %}" alt="" /></a>
+                            <h3>Me llamo Matias Husty</h3>
+                            <p>Nacido en Sáenz Peña, Chaco un 27 de enero del 2003. Soy el creador y programador de esta página, tengo 20 años y mis pasatiempos son:</p>
+                            <p>-Jugar al Fútbol</p>
+                            <p>-Ir al Gimnasio</p>
+                            <p>-Hacer música</p>
+                            
+                            <p>LLevo una vida muy conectada con el arte, me encanta todo lo que tenga que ver con la música, toco la guitarra hace más de 10 años, el bajo, algo de piano y armónica (muy poco). Hasta hace un tiempo tocaba el contrabajo en la orquesta local "Vientos de Cambio".</p>
                             <ul class="actions">
-                                <li><a href="#" class="button icon solid fa-file">Continue Reading</a></li>
                             </ul>
                         </article>
+                </section>
+                
 
-                </div>
+           
 
-            <!-- Sidebar -->
-                <div id="sidebar" class="col-4 col-12-medium">
+ 
 
-                    <!-- Excerpts -->
-                        <section>
-                            <ul class="divided">
-                                <li>
-
-                                    <!-- Excerpt -->
-                                        <article class="box excerpt">
-                                            <header>
-                                                <span class="date">July 30</span>
-                                                <h3><a href="#">Just another post</a></h3>
-                                            </header>
-                                            <p>Lorem ipsum dolor odio facilisis convallis. Etiam non nunc vel est
-                                            suscipit convallis non id orci lorem ipsum sed magna consequat feugiat lorem dolore.</p>
-                                        </article>
-
-                                </li>
-                                <li>
-
-                                    <!-- Excerpt -->
-                                        <article class="box excerpt">
-                                            <header>
-                                                <span class="date">July 28</span>
-                                                <h3><a href="#">And another post</a></h3>
-                                            </header>
-                                            <p>Lorem ipsum dolor odio facilisis convallis. Etiam non nunc vel est
-                                            suscipit convallis non id orci lorem ipsum sed magna consequat feugiat lorem dolore.</p>
-                                        </article>
-
-                                </li>
-                                <li>
-
-                                    <!-- Excerpt -->
-                                        <article class="box excerpt">
-                                            <header>
-                                                <span class="date">July 24</span>
-                                                <h3><a href="#">One more post</a></h3>
-                                            </header>
-                                            <p>Lorem ipsum dolor odio facilisis convallis. Etiam non nunc vel est
-                                            suscipit convallis non id orci lorem ipsum sed magna consequat feugiat lorem dolore.</p>
-                                        </article>
-
-                                </li>
-                            </ul>
+                        
+                            
                         </section>
-
-                    <!-- Highlights -->
-                        <section>
-                            <ul class="divided">
-                                <li>
-
-                                    <!-- Highlight -->
-                                        <article class="box highlight">
-                                            <header>
-                                                <h3><a href="#">Something of note</a></h3>
-                                            </header>
-                                            <a href="#" class="image left"><img src="images/pic06.jpg" alt="" /></a>
-                                            <p>Phasellus sed laoreet massa id justo mattis pharetra. Fusce suscipit ligula vel quam
-                                            viverra sit amet mollis tortor congue magna lorem ipsum dolor et quisque ut odio facilisis
-                                            convallis. Etiam non nunc vel est suscipit convallis non id orci. Ut interdum tempus
-                                            facilisis convallis. Etiam non nunc vel est suscipit convallis non id orci.</p>
-                                            <ul class="actions">
-                                                <li><a href="#" class="button icon solid fa-file">Learn More</a></li>
-                                            </ul>
-                                        </article>
-
-                                </li>
-                                <li>
-
-                                    <!-- Highlight -->
-                                        <article class="box highlight">
-                                            <header>
-                                                <h3><a href="#">Something of less note</a></h3>
-                                            </header>
-                                            <a href="#" class="image left"><img src="images/pic07.jpg" alt="" /></a>
-                                            <p>Phasellus sed laoreet massa id justo mattis pharetra. Fusce suscipit ligula vel quam
-                                            viverra sit amet mollis tortor congue magna lorem ipsum dolor et quisque ut odio facilisis
-                                            convallis. Etiam non nunc vel est suscipit convallis non id orci. Ut interdum tempus
-                                            facilisis convallis. Etiam non nunc vel est suscipit convallis non id orci.</p>
-                                            <ul class="actions">
-                                                <li><a href="#" class="button icon solid fa-file">Learn More</a></li>
-                                            </ul>
-                                        </article>
-
-                                </li>
-                            </ul>
-                        </section>
-
+                    </div>
                 </div>
 
         </div>
