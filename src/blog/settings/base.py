@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-r^n0rp_&i^^@tl%&%6*(10rr&#9%4higk1_0xzc8p@&(-!cf!2
 
 
 
-ALLOWED_HOSTS = ['127.0.0.1',]
+ALLOWED_HOSTS = ['127.0.0.1','matiaslh27.pythonanywhere.com',]
 
 
 # Application definition
@@ -61,7 +61,7 @@ ROOT_URLCONF = 'blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR/'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
